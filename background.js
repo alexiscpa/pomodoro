@@ -286,13 +286,17 @@ async function showNotification(type) {
     ? 'Great job! Time for a break.'
     : 'Break is over. Ready to focus?';
 
-  await chrome.notifications.create({
-    type: 'basic',
-    iconUrl: 'icons/icon128.png',
-    title: title,
-    message: message,
-    priority: 2
-  });
+  // Create notification without explicit icon - Chrome will use the extension icon from manifest
+  try {
+    await chrome.notifications.create({
+      type: 'basic',
+      title: title,
+      message: message,
+      priority: 2
+    });
+  } catch (error) {
+    console.error('Error creating notification:', error);
+  }
 }
 
 // Play notification sound using offscreen document
