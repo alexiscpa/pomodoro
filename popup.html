@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusFlow Pomodoro</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1 class="title">FocusFlow</h1>
+      <button id="statsBtn" class="icon-btn" title="View Statistics">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="14" rx="1"/>
+          <rect x="14" y="8" width="7" height="9" rx="1"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Session Type Indicator -->
+    <div class="session-indicator">
+      <span id="sessionType" class="session-type">Work Session</span>
+      <span id="sessionCount" class="session-count">Session 1/4</span>
+    </div>
+
+    <!-- Timer Display -->
+    <div class="timer-container">
+      <svg class="timer-ring" viewBox="0 0 200 200">
+        <circle class="timer-ring-bg" cx="100" cy="100" r="90"/>
+        <circle id="timerRingProgress" class="timer-ring-progress" cx="100" cy="100" r="90"/>
+      </svg>
+      <div class="timer-display">
+        <div id="timerText" class="timer-text">25:00</div>
+        <div id="timerStatus" class="timer-status">Ready to focus</div>
+      </div>
+    </div>
+
+    <!-- Timer Controls -->
+    <div class="controls">
+      <button id="startBtn" class="btn btn-primary">
+        <svg width="24" height="24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <span>Start</span>
+      </button>
+      <button id="pauseBtn" class="btn btn-secondary" style="display: none;">
+        <svg width="24" height="24" fill="currentColor">
+          <rect x="6" y="4" width="4" height="16"/>
+          <rect x="14" y="4" width="4" height="16"/>
+        </svg>
+        <span>Pause</span>
+      </button>
+      <button id="resetBtn" class="btn btn-secondary">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+          <path d="M21 3v5h-5"/>
+        </svg>
+      </button>
+      <button id="skipBtn" class="btn btn-secondary">
+        <svg width="24" height="24" fill="currentColor">
+          <path d="M5 4v16l11-8z"/>
+          <rect x="17" y="4" width="2" height="16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Current Task -->
+    <div class="task-section">
+      <label for="currentTask" class="task-label">Current Task</label>
+      <input
+        type="text"
+        id="currentTask"
+        class="task-input"
+        placeholder="What are you working on?"
+      />
+      <div class="tag-selector">
+        <label class="tag-option">
+          <input type="radio" name="tag" value="Work" checked>
+          <span class="tag-badge tag-work">Work</span>
+        </label>
+        <label class="tag-option">
+          <input type="radio" name="tag" value="Study">
+          <span class="tag-badge tag-study">Study</span>
+        </label>
+        <label class="tag-option">
+          <input type="radio" name="tag" value="Other">
+          <span class="tag-badge tag-other">Other</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Todo List -->
+    <div class="todo-section">
+      <div class="todo-header">
+        <h3 class="todo-title">Tasks</h3>
+        <button id="addTodoBtn" class="icon-btn">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="3" x2="8" y2="13"/>
+            <line x1="3" y1="8" x2="13" y2="8"/>
+          </svg>
+        </button>
+      </div>
+      <div id="todoList" class="todo-list">
+        <!-- Todos will be added here dynamically -->
+      </div>
+      <div class="todo-input-container" style="display: none;">
+        <input type="text" id="todoInput" class="todo-input" placeholder="Add a task...">
+        <button id="saveTodoBtn" class="btn-small">Add</button>
+      </div>
+    </div>
+
+    <!-- Today's Forest -->
+    <div class="forest-section">
+      <div class="forest-header">
+        <h3 class="forest-title">Today's Forest</h3>
+        <span id="sproutCount" class="sprout-count">0 sprouts</span>
+      </div>
+      <div id="forestGrid" class="forest-grid">
+        <!-- Sprouts will be added here -->
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <button id="settingsBtn" class="text-btn">Settings</button>
+      <label class="strict-mode">
+        <input type="checkbox" id="strictModeToggle">
+        <span>Strict Mode</span>
+      </label>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

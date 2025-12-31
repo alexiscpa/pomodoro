@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusFlow - Statistics & Settings</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="options-page">
+  <div class="options-container">
+    <!-- Header -->
+    <div class="options-header">
+      <h1>FocusFlow Statistics & Settings</h1>
+      <button id="backBtn" class="btn btn-secondary">Back to Timer</button>
+    </div>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+      <h2 class="section-title">Your Statistics</h2>
+
+      <!-- Summary Cards -->
+      <div class="stats-cards">
+        <div class="stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-value" id="totalSessions">0</div>
+          <div class="stat-label">Total Sessions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⏱️</div>
+          <div class="stat-value" id="totalMinutes">0</div>
+          <div class="stat-label">Minutes Focused</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-value" id="currentStreak">0</div>
+          <div class="stat-label">Day Streak</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🌱</div>
+          <div class="stat-value" id="totalSprouts">0</div>
+          <div class="stat-label">Total Sprouts</div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="charts-container">
+        <div class="chart-card">
+          <h3 class="chart-title">Sessions per Day (Last 7 Days)</h3>
+          <canvas id="sessionsChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3 class="chart-title">Sessions by Category</h3>
+          <canvas id="categoryChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Session History -->
+      <div class="history-section">
+        <div class="history-header">
+          <h3 class="section-title">Recent Sessions</h3>
+          <button id="clearHistoryBtn" class="btn btn-danger-outline">Clear History</button>
+        </div>
+        <div id="historyList" class="history-list">
+          <!-- History items will be added here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Settings Section -->
+    <section class="settings-section">
+      <h2 class="section-title">Settings</h2>
+
+      <!-- Timer Durations -->
+      <div class="settings-group">
+        <h3 class="settings-group-title">Timer Durations</h3>
+
+        <div class="setting-item">
+          <label for="workDuration">Work Session (minutes)</label>
+          <input type="number" id="workDuration" min="1" max="60" value="25" class="setting-input">
+        </div>
+
+        <div class="setting-item">
+          <label for="shortBreakDuration">Short Break (minutes)</label>
+          <input type="number" id="shortBreakDuration" min="1" max="30" value="5" class="setting-input">
+        </div>
+
+        <div class="setting-item">
+          <label for="longBreakDuration">Long Break (minutes)</label>
+          <input type="number" id="longBreakDuration" min="1" max="60" value="15" class="setting-input">
+        </div>
+      </div>
+
+      <!-- Automation Settings -->
+      <div class="settings-group">
+        <h3 class="settings-group-title">Automation</h3>
+
+        <div class="setting-item">
+          <label class="toggle-label">
+            <input type="checkbox" id="autoStartBreaks" class="toggle-input">
+            <span>Auto-start breaks</span>
+          </label>
+          <p class="setting-description">Automatically start break sessions after work</p>
+        </div>
+
+        <div class="setting-item">
+          <label class="toggle-label">
+            <input type="checkbox" id="autoStartWork" class="toggle-input">
+            <span>Auto-start work sessions</span>
+          </label>
+          <p class="setting-description">Automatically start work sessions after breaks</p>
+        </div>
+      </div>
+
+      <!-- Other Settings -->
+      <div class="settings-group">
+        <h3 class="settings-group-title">Other</h3>
+
+        <div class="setting-item">
+          <label class="toggle-label">
+            <input type="checkbox" id="strictMode" class="toggle-input">
+            <span>Strict Mode</span>
+          </label>
+          <p class="setting-description">Stopping a timer mid-way won't count toward stats</p>
+        </div>
+
+        <div class="setting-item">
+          <label class="toggle-label">
+            <input type="checkbox" id="notificationSound" class="toggle-input">
+            <span>Notification Sound</span>
+          </label>
+          <p class="setting-description">Play a sound when sessions complete</p>
+        </div>
+      </div>
+
+      <!-- Save Button -->
+      <div class="settings-actions">
+        <button id="saveSettingsBtn" class="btn btn-primary">Save Settings</button>
+        <button id="resetSettingsBtn" class="btn btn-secondary">Reset to Defaults</button>
+      </div>
+
+      <div id="saveMessage" class="save-message" style="display: none;">
+        Settings saved successfully!
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="options-footer">
+      <p>FocusFlow Pomodoro v1.0.0</p>
+      <p>Made with focus and productivity in mind</p>
+    </footer>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
